@@ -85,5 +85,5 @@ app.factory('responseObserver', ['$rootScope', '$q', '$location', function ($roo
 
 }]);
 
-app.constant('URL', 'http://ec2-18-222-62-87.us-east-2.compute.amazonaws.com:8080');
+app.constant('URL', 'http://ec2-18-222-62-87.us-east-2.compute.amazonaws.com');
 // app.constant('URL', 'https://social-network-spring.herokuapp.com');
