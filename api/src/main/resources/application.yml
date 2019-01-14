@@ -36,8 +36,8 @@ spring:
 
 resources:
   avatar-folder: images/avatars/
-  api-url: ${SOCIAL_NETWORK_API_URL:http://localhost:8080}
-  web-url: ${SOCIAL_NETWORK_WEB_URL:http://localhost:8080}
+  api-url: ${SOCIAL_NETWORK_API_URL:http://ec2-18-222-62-87.us-east-2.compute.amazonaws.com:8080}
+  web-url: ${SOCIAL_NETWORK_WEB_URL:http://ec2-18-222-62-87.us-east-2.compute.amazonaws.com:8080}
 
 remember-me:
   token: SN_REMEMBER_TOKEN
