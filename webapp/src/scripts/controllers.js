@@ -35,6 +35,16 @@ app.controller('tabController', ['AuthService', '$http', '$scope', '$route', '$r
             name: 'profile',
             title: 'Settings',
             visible: false
+        }, {
+            link: 'allsongs',
+            name: 'allsongs',
+            title: 'All Songs',
+            visible: true
+        }, {
+            link: 'mysongs',
+            name: 'mysongs',
+            title: 'My Songs',
+            visible: true
         }];
 
         function findTab(name) {
