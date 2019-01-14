@@ -398,3 +398,101 @@ app.controller('signUpController', ['AuthService', '$scope', '$route', '$rootSco
         };
 
     }]);
+
+app.controller('mySongsController', ['AuthService', '$scope', '$route', '$rootScope', '$http', '$location', 'URL',
+    function (AuthService, $scope, $route, $rootScope, $http, $location, URL) {
+
+        $scope.success = null;
+        $scope.error = null;
+        $scope.doNotMatch = null;
+        $scope.message = null;
+
+        $scope.signUp = function () {
+
+            if ($scope.password !== $scope.confirmPassword) {
+                $scope.error = true;
+                $scope.message = 'The password and its confirmation do not match!';
+                return;
+            }
+
+            var credentials = {
+                firstName: $scope.firstName,
+                lastName: $scope.lastName,
+                userName: $scope.username,
+                password: $scope.password
+            };
+
+            var headers = credentials ? {
+                authorization: "Basic "
+                + btoa(credentials.userName + ":" + credentials.password),
+                withCredentials: "true"
+            } : {};
+
+            $http.post(URL + '/api/signUp', credentials).then(function (response) {
+                $scope.success = true;
+                $scope.message = 'Welcome to our community!';
+                $http.get(URL + '/api/login', {headers: headers}).success(function (data) {
+                    AuthService.load();
+                    $location.path($rootScope.targetUrl ? $rootScope.targetUrl : "/profile");
+                });
+            }).catch(function (response) {
+                $scope.error = true;
+                if (response.status === 400 && !!response.data && !angular.isObject(response.data)) {
+                    $scope.message = response.data;
+                } else {
+                    $scope.message = 'An error has occurred! Registration failed.';
+                }
+            });
+
+        };
+
+    }]);
+
+app.controller('allSongsController', ['AuthService', '$scope', '$route', '$rootScope', '$http', '$location', 'URL',
+    function (AuthService, $scope, $route, $rootScope, $http, $location, URL) {
+
+        $scope.success = null;
+        $scope.error = null;
+        $scope.doNotMatch = null;
+        $scope.message = null;
+
+        $scope.signUp = function () {
+
+            if ($scope.password !== $scope.confirmPassword) {
+                $scope.error = true;
+                $scope.message = 'The password and its confirmation do not match!';
+                return;
+            }
+
+            var credentials = {
+                firstName: $scope.firstName,
+                lastName: $scope.lastName,
+                userName: $scope.username,
+                password: $scope.password
+            };
+
+            var headers = credentials ? {
+                authorization: "Basic "
+                + btoa(credentials.userName + ":" + credentials.password),
+                withCredentials: "true"
+            } : {};
+
+            $http.post(URL + '/api/signUp', credentials).then(function (response) {
+                $scope.success = true;
+                $scope.message = 'Welcome to our community!';
+                $http.get(URL + '/api/login', {headers: headers}).success(function (data) {
+                    AuthService.load();
+                    $location.path($rootScope.targetUrl ? $rootScope.targetUrl : "/profile");
+                });
+            }).catch(function (response) {
+                $scope.error = true;
+                if (response.status === 400 && !!response.data && !angular.isObject(response.data)) {
+                    $scope.message = response.data;
+                } else {
+                    $scope.message = 'An error has occurred! Registration failed.';
+                }
+            });
+
+        };
+
+    }]);

@@ -51,6 +51,12 @@ app.config(['$routeProvider', '$httpProvider', '$sceDelegateProvider', 'URL',
         .when('/signUp', {
             templateUrl: 'partials/signup.html',
             controller: 'signUpController'
+        }).when('/mysongs', {
+            templateUrl: 'partials/mysongs.html',
+            controller: 'mySongsController'
+        }).when('/allsongs', {
+            templateUrl: 'partials/allsongs.html',
+            controller: 'allSongsController'
         })
         .otherwise(
             {
